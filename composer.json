@@ -1,16 +1,20 @@
 {
-    "name": "laravel/cashier",
-    "description": "Laravel Cashier provides an expressive, fluent interface to Stripe's subscription billing services.",
-    "keywords": ["laravel", "stripe", "billing"],
+    "name": "unicorn/lumen-cashier",
+    "description": "Lumen fork of Laravel Cashier (Laravel Cashier provides an expressive, fluent interface to Stripe's subscription billing services).",
+    "keywords": ["laravel", "stripe", "billing", "lumen"],
     "license": "MIT",
     "support": {
-        "issues": "https://github.com/laravel/cashier/issues",
-        "source": "https://github.com/laravel/cashier"
+        "issues": "https://github.com/UnicornGlobal/lumen-cashier/issues",
+        "source": "https://github.com/laravel/lumen-cashier"
     },
     "authors": [
         {
             "name": "Taylor Otwell",
             "email": "taylorotwell@gmail.com"
+        },
+        {
+            "name": "Darryn Ten",
+            "email": "darryn.ten@gmail.com"
         }
     ],
     "require": {
@@ -41,12 +45,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Laravel\\Cashier\\": "src/"
+            "Lumen\\Cashier\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Laravel\\Cashier\\Tests\\": "tests/"
+            "Lumen\\Cashier\\Tests\\": "tests/"
         }
     },
     "extra": {
@@ -55,7 +59,7 @@
         },
         "laravel": {
             "providers": [
-                "Laravel\\Cashier\\CashierServiceProvider"
+                "Lumen\\Cashier\\CashierServiceProvider"
             ]
         }
     },
