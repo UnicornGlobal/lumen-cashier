@@ -1,3 +1,11 @@
+# lumen-cashier
+
+A fork of laravel/cashier
+
+---
+
+## Original Laravel Cashier Documentation Follows
+
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-cashier.svg"></p>
 
 <p align="center">
