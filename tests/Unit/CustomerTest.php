@@ -1,9 +1,9 @@
 <?php
 
-namespace Laravel\Cashier\Tests\Unit;
+namespace Lumen\Cashier\Tests\Unit;
 
 use Carbon\Carbon;
-use Laravel\Cashier\Tests\Fixtures\User;
+use Lumen\Cashier\Tests\Fixtures\User;
 use PHPUnit\Framework\TestCase;
 
 class CustomerTest extends TestCase

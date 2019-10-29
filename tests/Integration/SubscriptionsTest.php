@@ -1,15 +1,15 @@
 <?php
 
-namespace Laravel\Cashier\Tests\Integration;
+namespace Lumen\Cashier\Tests\Integration;
 
 use Carbon\Carbon;
 use DateTime;
 use Illuminate\Support\Str;
-use Laravel\Cashier\Cashier;
-use Laravel\Cashier\Exceptions\PaymentActionRequired;
-use Laravel\Cashier\Exceptions\PaymentFailure;
-use Laravel\Cashier\Payment;
-use Laravel\Cashier\Subscription;
+use Lumen\Cashier\Cashier;
+use Lumen\Cashier\Exceptions\PaymentActionRequired;
+use Lumen\Cashier\Exceptions\PaymentFailure;
+use Lumen\Cashier\Payment;
+use Lumen\Cashier\Subscription;
 use Stripe\Coupon;
 use Stripe\Plan;
 use Stripe\Product;
@@ -54,7 +54,7 @@ class SubscriptionsTest extends IntegrationTestCase
 
         Product::create([
             'id' => static::$productId,
-            'name' => 'Laravel Cashier Test Product',
+            'name' => 'Lumen Cashier Test Product',
             'type' => 'service',
         ]);
 

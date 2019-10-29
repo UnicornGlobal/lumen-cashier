@@ -1,9 +1,9 @@
 <?php
 
-namespace Laravel\Cashier\Tests\Unit;
+namespace Lumen\Cashier\Tests\Unit;
 
-use Laravel\Cashier\Exceptions\SubscriptionUpdateFailure;
-use Laravel\Cashier\Subscription;
+use Lumen\Cashier\Exceptions\SubscriptionUpdateFailure;
+use Lumen\Cashier\Subscription;
 use PHPUnit\Framework\TestCase;
 
 class SubscriptionTest extends TestCase

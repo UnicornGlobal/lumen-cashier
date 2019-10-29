@@ -1,8 +1,8 @@
 <?php
 
-namespace Laravel\Cashier\Tests\Integration;
+namespace Lumen\Cashier\Tests\Integration;
 
-use Laravel\Cashier\PaymentMethod;
+use Lumen\Cashier\PaymentMethod;
 use Stripe\Card as StripeCard;
 use Stripe\PaymentMethod as StripePaymentMethod;
 use Stripe\SetupIntent as StripeSetupIntent;

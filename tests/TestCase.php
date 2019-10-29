@@ -1,8 +1,8 @@
 <?php
 
-namespace Laravel\Cashier\Tests;
+namespace Lumen\Cashier\Tests;
 
-use Laravel\Cashier\CashierServiceProvider;
+use Lumen\Cashier\CashierServiceProvider;
 use Orchestra\Testbench\TestCase as OrchestraTestCase;
 
 abstract class TestCase extends OrchestraTestCase

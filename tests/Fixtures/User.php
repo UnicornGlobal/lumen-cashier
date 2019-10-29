@@ -1,10 +1,10 @@
 <?php
 
-namespace Laravel\Cashier\Tests\Fixtures;
+namespace Lumen\Cashier\Tests\Fixtures;
 
 use Illuminate\Foundation\Auth\User as Model;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Cashier\Billable;
+use Lumen\Cashier\Billable;
 
 class User extends Model
 {

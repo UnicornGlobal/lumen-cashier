@@ -1,8 +1,8 @@
 <?php
 
-namespace Laravel\Cashier\Tests\Unit;
+namespace Lumen\Cashier\Tests\Unit;
 
-use Laravel\Cashier\Payment;
+use Lumen\Cashier\Payment;
 use PHPUnit\Framework\TestCase;
 use Stripe\PaymentIntent;
 
