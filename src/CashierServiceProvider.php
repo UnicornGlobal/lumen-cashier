@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravel\Cashier;
+namespace Lumen\Cashier;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
@@ -23,7 +23,7 @@ class CashierServiceProvider extends ServiceProvider
         $this->registerPublishing();
 
         Stripe::setAppInfo(
-            'Laravel Cashier',
+            'Lumen Cashier',
             Cashier::VERSION,
             'https://laravel.com'
         );
@@ -88,7 +88,7 @@ class CashierServiceProvider extends ServiceProvider
         if (Cashier::$registersRoutes) {
             Route::group([
                 'prefix' => config('cashier.path'),
-                'namespace' => 'Laravel\Cashier\Http\Controllers',
+                'namespace' => 'Lumen\Cashier\Http\Controllers',
                 'as' => 'cashier.',
             ], function () {
                 $this->loadRoutesFrom(__DIR__.'/../routes/web.php');

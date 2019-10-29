@@ -1,15 +1,15 @@
 <?php
 
-namespace Laravel\Cashier\Exceptions;
+namespace Lumen\Cashier\Exceptions;
 
-use Laravel\Cashier\Payment;
+use Lumen\Cashier\Payment;
 
 class PaymentActionRequired extends IncompletePayment
 {
     /**
      * Create a new PaymentActionRequired instance.
      *
-     * @param  \Laravel\Cashier\Payment  $payment
+     * @param  \Lumen\Cashier\Payment  $payment
      * @return self
      */
     public static function incomplete(Payment $payment)
