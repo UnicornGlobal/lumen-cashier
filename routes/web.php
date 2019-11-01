@@ -2,5 +2,5 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('payment/{id}', 'PaymentController@show')->name('payment');
-Route::post('webhook', 'WebhookController@handleWebhook')->name('webhook');
+Route::get('stripe/pay/{id}', '\Lumen\Cashier\Http\Controllers\PaymentController@pay');
+Route::post('stripe/webhook', 'Lumen\Cashier\Http\Controllers\WebhookController@handleWebhook');
