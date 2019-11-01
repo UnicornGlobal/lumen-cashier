@@ -2,7 +2,7 @@
 
 namespace Lumen\Cashier\Tests\Fixtures;
 
-use Illuminate\Foundation\Auth\User as Model;
+use Lumen\Cashier\Tests\Fixtures\Auth\User as Model;
 use Illuminate\Notifications\Notifiable;
 use Lumen\Cashier\Billable;
 
