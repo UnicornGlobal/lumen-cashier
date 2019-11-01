@@ -23,13 +23,13 @@ abstract class IntegrationTestCase extends TestCase
         Stripe::setApiKey(getenv('STRIPE_SECRET'));
     }
 
-    protected function setUp(): void
+    public function setUp(): void
     {
         parent::setUp();
 
         Eloquent::unguard();
 
-        $this->loadLaravelMigrations();
+        $this->loadLumenMigrations();
 
         $this->artisan('migrate')->run();
     }
