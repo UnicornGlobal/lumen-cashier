@@ -5,16 +5,12 @@
     "license": "MIT",
     "support": {
         "issues": "https://github.com/UnicornGlobal/lumen-cashier/issues",
-        "source": "https://github.com/laravel/lumen-cashier"
+        "source": "https://github.com/UnicornGlobal/lumen-cashier"
     },
     "authors": [
         {
             "name": "Taylor Otwell",
             "email": "taylorotwell@gmail.com"
-        },
-        {
-            "name": "Darryn Ten",
-            "email": "darryn.ten@gmail.com"
         }
     ],
     "require": {
@@ -36,9 +32,11 @@
         "symfony/intl": "^4.3"
     },
     "require-dev": {
+        "illuminate/auth": "^6.3",
         "mockery/mockery": "^1.0",
-        "orchestra/testbench": "^3.8|^4.0|^5.0",
-        "phpunit/phpunit": "^7.5|^8.0"
+        "phpunit/phpunit": "^7.5|^8.0",
+        "unicorn/lumen-testing": "dev-master",
+        "unicorn/lumen-testbench": "^3.8|^4.0|^5.0"
     },
     "suggest": {
         "ext-intl": "Allows for more locales besides the default \"en\" when formatting money values."
