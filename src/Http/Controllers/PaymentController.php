@@ -15,7 +15,7 @@ class PaymentController extends Controller
      * @param  string  $id
      * @return \Illuminate\View\View
      */
-    public function show($id)
+    public function pay($id)
     {
         return response()->json([
             'stripeKey' => config('cashier.key'),
