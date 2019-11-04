@@ -128,12 +128,17 @@ class CashierServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__.'/../config/cashier.php' => $this->app->configPath('cashier.php'),
+                __DIR__.'/../config/cashier.php' => $this->config_path('cashier.php'),
             ], 'cashier-config');
 
             $this->publishes([
                 __DIR__.'/../database/migrations' => $this->app->databasePath('migrations'),
             ], 'cashier-migrations');
         }
+    }
+
+    private function config_path($path = '')
+    {
+        return app()->basePath() . '/config' . ($path ? '/' . $path : $path);
     }
 }
