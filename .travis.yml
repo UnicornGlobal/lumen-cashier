@@ -8,19 +8,19 @@ php:
 
 env:
   matrix:
-    - LARAVEL=^6.0
-    - LARAVEL=^7.0
+    - LUMEN=^6.0
+    - LUMEN=^7.0
 
 matrix:
   fast_finish: true
   allow_failures:
-    - env: LARAVEL=^7.0
+    - env: LUMEN=^7.0
 
 before_install:
   - phpenv config-rm xdebug.ini || true
 
 install:
-  - travis_retry composer require "illuminate/contracts=${LARAVEL}" --prefer-dist --no-interaction --no-suggest
+  - travis_retry composer require "illuminate/contracts=${LUMEN}" --prefer-dist --no-interaction --no-suggest
 
 test:
   - echo "Skipping test"
