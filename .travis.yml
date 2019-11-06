@@ -24,4 +24,6 @@ install:
 test:
   - echo "Skipping test"
 
+script: echo "Skipping test"
+
 # script: vendor/bin/phpunit --verbose
