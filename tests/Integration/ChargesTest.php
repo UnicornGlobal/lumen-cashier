@@ -1,9 +1,9 @@
 <?php
 
-namespace Laravel\Cashier\Tests\Integration;
+namespace Lumen\Cashier\Tests\Integration;
 
-use Laravel\Cashier\Exceptions\PaymentActionRequired;
-use Laravel\Cashier\Payment;
+use Lumen\Cashier\Exceptions\PaymentActionRequired;
+use Lumen\Cashier\Payment;
 
 class ChargesTest extends IntegrationTestCase
 {
@@ -36,11 +36,11 @@ class ChargesTest extends IntegrationTestCase
         $user->createAsStripeCustomer();
         $user->updateDefaultPaymentMethod('pm_card_visa');
 
-        $user->invoiceFor('Laravel Cashier', 1000);
+        $user->invoiceFor('Lumen Cashier', 1000);
 
         $invoice = $user->invoices()[0];
         $this->assertEquals('$10.00', $invoice->total());
-        $this->assertEquals('Laravel Cashier', $invoice->invoiceItems()[0]->asStripeInvoiceItem()->description);
+        $this->assertEquals('Lumen Cashier', $invoice->invoiceItems()[0]->asStripeInvoiceItem()->description);
     }
 
     public function test_customer_can_be_refunded()
@@ -49,7 +49,7 @@ class ChargesTest extends IntegrationTestCase
         $user->createAsStripeCustomer();
         $user->updateDefaultPaymentMethod('pm_card_visa');
 
-        $invoice = $user->invoiceFor('Laravel Cashier', 1000);
+        $invoice = $user->invoiceFor('Lumen Cashier', 1000);
         $refund = $user->refund($invoice->payment_intent);
 
         $this->assertEquals(1000, $refund->amount);

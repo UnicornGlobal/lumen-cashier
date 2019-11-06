@@ -1,11 +1,11 @@
 <?php
 
-namespace Laravel\Cashier\Tests;
+namespace Lumen\Cashier\Tests;
 
-use Laravel\Cashier\CashierServiceProvider;
-use Orchestra\Testbench\TestCase as OrchestraTestCase;
+use Lumen\Cashier\CashierServiceProvider;
+use Lumen\Testbench\TestCase as TestbenchTestCase;
 
-abstract class TestCase extends OrchestraTestCase
+abstract class TestCase extends TestbenchTestCase
 {
     protected function getPackageProviders($app)
     {

@@ -105,7 +105,7 @@ return [
     |
     | This option is the default paper size for all invoices generated using
     | Cashier. You are free to customize this settings based on the usual
-    | paper size used by the customers using your Laravel applications.
+    | paper size used by the customers using your Lumen applications.
     |
     | Supported sizes: 'letter', 'legal', 'A4'
     |
@@ -124,6 +124,6 @@ return [
     |
     */
 
-    'logger' => env('CASHIER_LOGGER'),
+    'logger' => env('CASHIER_LOGGER', 'syslog'),
 
 ];

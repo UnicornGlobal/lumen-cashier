@@ -1,7 +1,8 @@
 <?php
 
-namespace Laravel\Cashier;
+namespace Lumen\Cashier;
 
+use Exception;
 use Stripe\PaymentMethod as StripePaymentMethod;
 
 class PaymentMethod
@@ -29,6 +30,10 @@ class PaymentMethod
      */
     public function __construct($owner, StripePaymentMethod $paymentMethod)
     {
+        if ($owner->stripe_id !== $paymentMethod->customer) {
+            throw new Exception("The invoice `{$paymentMethod->id}` does not belong to this customer `$owner->stripe_id`.");
+        }
+
         $this->owner = $owner;
         $this->paymentMethod = $paymentMethod;
     }

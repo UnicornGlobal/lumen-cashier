@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravel\Cashier;
+namespace Lumen\Cashier;
 
 use Carbon\Carbon;
 
@@ -24,7 +24,7 @@ class InvoiceItem
      * Create a new invoice item instance.
      *
      * @param  \Illuminate\Database\Eloquent\Model  $owner
-     * @param  \Stripe\StripeObject  $item
+     * @param  \Stripe\InvoiceLineItem  $item
      * @return void
      */
     public function __construct($owner, $item)

@@ -1,16 +1,20 @@
 {
-    "name": "laravel/cashier",
-    "description": "Laravel Cashier provides an expressive, fluent interface to Stripe's subscription billing services.",
-    "keywords": ["laravel", "stripe", "billing"],
+    "name": "unicorn/lumen-cashier",
+    "description": "Lumen fork of Laravel Cashier (Laravel Cashier provides an expressive, fluent interface to Stripe's subscription billing services).",
+    "keywords": ["laravel", "stripe", "billing", "lumen"],
     "license": "MIT",
     "support": {
-        "issues": "https://github.com/laravel/cashier/issues",
-        "source": "https://github.com/laravel/cashier"
+        "issues": "https://github.com/UnicornGlobal/lumen-cashier/issues",
+        "source": "https://github.com/UnicornGlobal/lumen-cashier"
     },
     "authors": [
         {
             "name": "Taylor Otwell",
             "email": "taylorotwell@gmail.com"
+        },
+        {
+            "name": "UnicornGlobal",
+            "email": "admin@unicorn.global"
         }
     ],
     "require": {
@@ -32,21 +36,24 @@
         "symfony/intl": "^4.3"
     },
     "require-dev": {
+        "illuminate/auth": "^6.3",
         "mockery/mockery": "^1.0",
-        "orchestra/testbench": "^3.8|^4.0|^5.0",
-        "phpunit/phpunit": "^7.5|^8.0"
+        "phpunit/php-invoker": "^2.0",
+        "phpunit/phpunit": "^7.5|^8.0",
+        "unicorn/lumen-testbench": "^3.8|^4.0|^5.0",
+        "unicorn/lumen-testing": "dev-master"
     },
     "suggest": {
         "ext-intl": "Allows for more locales besides the default \"en\" when formatting money values."
     },
     "autoload": {
         "psr-4": {
-            "Laravel\\Cashier\\": "src/"
+            "Lumen\\Cashier\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Laravel\\Cashier\\Tests\\": "tests/"
+            "Lumen\\Cashier\\Tests\\": "tests/"
         }
     },
     "extra": {
@@ -55,7 +62,7 @@
         },
         "laravel": {
             "providers": [
-                "Laravel\\Cashier\\CashierServiceProvider"
+                "Lumen\\Cashier\\CashierServiceProvider"
             ]
         }
     },
@@ -63,5 +70,5 @@
         "sort-packages": true
     },
     "minimum-stability": "dev",
-    "prefer-stable": true
+    "prefer-stable": false
 }

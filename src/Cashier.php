@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravel\Cashier;
+namespace Lumen\Cashier;
 
 use Money\Currencies\ISOCurrencies;
 use Money\Currency;
@@ -44,6 +44,13 @@ class Cashier
      * @var bool
      */
     public static $registersRoutes = true;
+
+    /**
+     * Indicates if Cashier will mark past due subscriptions as inactive.
+     *
+     * @var bool
+     */
+    public static $deactivatePastDue = true;
 
     /**
      * Get the default Stripe API options.
@@ -111,6 +118,18 @@ class Cashier
     public static function ignoreRoutes()
     {
         static::$registersRoutes = false;
+
+        return new static;
+    }
+
+    /**
+     * Configure Cashier to maintain past due subscriptions as active.
+     *
+     * @return static
+     */
+    public static function keepPastDueSubscriptionsActive()
+    {
+        static::$deactivatePastDue = false;
 
         return new static;
     }

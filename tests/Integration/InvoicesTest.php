@@ -1,9 +1,9 @@
 <?php
 
-namespace Laravel\Cashier\Tests\Integration;
+namespace Lumen\Cashier\Tests\Integration;
 
-use Laravel\Cashier\Exceptions\InvalidStripeCustomer;
-use Laravel\Cashier\Invoice;
+use Lumen\Cashier\Exceptions\InvalidStripeCustomer;
+use Lumen\Cashier\Invoice;
 
 class InvoicesTest extends IntegrationTestCase
 {

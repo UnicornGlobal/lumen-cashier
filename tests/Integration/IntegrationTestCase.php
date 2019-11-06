@@ -1,10 +1,10 @@
 <?php
 
-namespace Laravel\Cashier\Tests\Integration;
+namespace Lumen\Cashier\Tests\Integration;
 
 use Illuminate\Database\Eloquent\Model as Eloquent;
-use Laravel\Cashier\Tests\Fixtures\User;
-use Laravel\Cashier\Tests\TestCase;
+use Lumen\Cashier\Tests\Fixtures\User;
+use Lumen\Cashier\Tests\TestCase;
 use Stripe\ApiResource;
 use Stripe\Exception\InvalidRequestException;
 use Stripe\Stripe;
@@ -23,13 +23,13 @@ abstract class IntegrationTestCase extends TestCase
         Stripe::setApiKey(getenv('STRIPE_SECRET'));
     }
 
-    protected function setUp(): void
+    public function setUp(): void
     {
         parent::setUp();
 
         Eloquent::unguard();
 
-        $this->loadLaravelMigrations();
+        $this->loadLumenMigrations();
 
         $this->artisan('migrate')->run();
     }

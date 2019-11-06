@@ -1,12 +1,12 @@
 <?php
 
-namespace Laravel\Cashier;
+namespace Lumen\Cashier;
 
 use Carbon\Carbon;
 use DateTimeInterface;
 use Illuminate\Database\Eloquent\Model;
-use Laravel\Cashier\Exceptions\IncompletePayment;
-use Laravel\Cashier\Exceptions\SubscriptionUpdateFailure;
+use Lumen\Cashier\Exceptions\IncompletePayment;
+use Lumen\Cashier\Exceptions\SubscriptionUpdateFailure;
 use LogicException;
 use Stripe\Subscription as StripeSubscription;
 
@@ -127,7 +127,7 @@ class Subscription extends Model
         return (is_null($this->ends_at) || $this->onGracePeriod()) &&
             $this->stripe_status !== StripeSubscription::STATUS_INCOMPLETE &&
             $this->stripe_status !== StripeSubscription::STATUS_INCOMPLETE_EXPIRED &&
-            $this->stripe_status !== StripeSubscription::STATUS_PAST_DUE &&
+            (! Cashier::$deactivatePastDue || $this->stripe_status !== StripeSubscription::STATUS_PAST_DUE) &&
             $this->stripe_status !== StripeSubscription::STATUS_UNPAID;
     }
 
@@ -146,8 +146,11 @@ class Subscription extends Model
                 });
         })->where('stripe_status', '!=', StripeSubscription::STATUS_INCOMPLETE)
             ->where('stripe_status', '!=', StripeSubscription::STATUS_INCOMPLETE_EXPIRED)
-            ->where('stripe_status', '!=', StripeSubscription::STATUS_PAST_DUE)
             ->where('stripe_status', '!=', StripeSubscription::STATUS_UNPAID);
+
+        if (Cashier::$deactivatePastDue) {
+            $query->where('stripe_status', '!=', StripeSubscription::STATUS_PAST_DUE);
+        }
     }
 
     /**
@@ -308,7 +311,7 @@ class Subscription extends Model
      * @param  int  $count
      * @return $this
      *
-     * @throws \Laravel\Cashier\Exceptions\SubscriptionUpdateFailure
+     * @throws \Lumen\Cashier\Exceptions\SubscriptionUpdateFailure
      */
     public function incrementQuantity($count = 1)
     {
@@ -323,8 +326,8 @@ class Subscription extends Model
      * @param  int  $count
      * @return $this
      *
-     * @throws \Laravel\Cashier\Exceptions\IncompletePayment
-     * @throws \Laravel\Cashier\Exceptions\SubscriptionUpdateFailure
+     * @throws \Lumen\Cashier\Exceptions\IncompletePayment
+     * @throws \Lumen\Cashier\Exceptions\SubscriptionUpdateFailure
      */
     public function incrementAndInvoice($count = 1)
     {
@@ -341,7 +344,7 @@ class Subscription extends Model
      * @param  int  $count
      * @return $this
      *
-     * @throws \Laravel\Cashier\Exceptions\SubscriptionUpdateFailure
+     * @throws \Lumen\Cashier\Exceptions\SubscriptionUpdateFailure
      */
     public function decrementQuantity($count = 1)
     {
@@ -356,7 +359,7 @@ class Subscription extends Model
      * @param  int  $quantity
      * @return $this
      *
-     * @throws \Laravel\Cashier\Exceptions\SubscriptionUpdateFailure
+     * @throws \Lumen\Cashier\Exceptions\SubscriptionUpdateFailure
      */
     public function updateQuantity($quantity)
     {
@@ -429,7 +432,7 @@ class Subscription extends Model
      * @param  array  $options
      * @return $this
      *
-     * @throws \Laravel\Cashier\Exceptions\SubscriptionUpdateFailure
+     * @throws \Lumen\Cashier\Exceptions\SubscriptionUpdateFailure
      */
     public function swap($plan, $options = [])
     {
@@ -486,8 +489,8 @@ class Subscription extends Model
      * @param  array  $options
      * @return $this
      *
-     * @throws \Laravel\Cashier\Exceptions\IncompletePayment
-     * @throws \Laravel\Cashier\Exceptions\SubscriptionUpdateFailure
+     * @throws \Lumen\Cashier\Exceptions\IncompletePayment
+     * @throws \Lumen\Cashier\Exceptions\SubscriptionUpdateFailure
      */
     public function swapAndInvoice($plan, $options = [])
     {
@@ -602,9 +605,9 @@ class Subscription extends Model
      * Invoice the subscription outside of the regular billing cycle.
      *
      * @param  array  $options
-     * @return \Laravel\Cashier\Invoice|bool
+     * @return \Lumen\Cashier\Invoice|bool
      *
-     * @throws \Laravel\Cashier\Exceptions\IncompletePayment
+     * @throws \Lumen\Cashier\Exceptions\IncompletePayment
      */
     public function invoice(array $options = [])
     {
@@ -647,7 +650,7 @@ class Subscription extends Model
     /**
      * Get the latest payment for a Subscription.
      *
-     * @return \Laravel\Cashier\Payment|null
+     * @return \Lumen\Cashier\Payment|null
      */
     public function latestPayment()
     {
