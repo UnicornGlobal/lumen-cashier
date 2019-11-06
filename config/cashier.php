@@ -124,6 +124,6 @@ return [
     |
     */
 
-    'logger' => env('CASHIER_LOGGER'),
+    'logger' => env('CASHIER_LOGGER', 'syslog'),
 
 ];

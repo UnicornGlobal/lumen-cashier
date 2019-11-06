@@ -1,6 +1,6 @@
 <?php
 
-namespace Lumen\Cashier\Tests\Fixtures;
+namespace Lumen\Cashier\Tests\Fixtures\Auth;
 
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;

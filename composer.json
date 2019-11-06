@@ -11,6 +11,10 @@
         {
             "name": "Taylor Otwell",
             "email": "taylorotwell@gmail.com"
+        },
+        {
+            "name": "UnicornGlobal",
+            "email": "admin@unicorn.global"
         }
     ],
     "require": {
@@ -34,9 +38,10 @@
     "require-dev": {
         "illuminate/auth": "^6.3",
         "mockery/mockery": "^1.0",
+        "phpunit/php-invoker": "^2.0",
         "phpunit/phpunit": "^7.5|^8.0",
-        "unicorn/lumen-testing": "dev-master",
-        "unicorn/lumen-testbench": "^3.8|^4.0|^5.0"
+        "unicorn/lumen-testbench": "^3.8|^4.0|^5.0",
+        "unicorn/lumen-testing": "dev-master"
     },
     "suggest": {
         "ext-intl": "Allows for more locales besides the default \"en\" when formatting money values."
@@ -65,5 +70,5 @@
         "sort-packages": true
     },
     "minimum-stability": "dev",
-    "prefer-stable": true
+    "prefer-stable": false
 }
