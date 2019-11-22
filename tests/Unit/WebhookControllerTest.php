@@ -30,7 +30,7 @@ class WebhookControllerTest extends TestCase
     private function request($event)
     {
         return Request::create(
-            '/', 'POST', [], [], [], [], json_encode(['type' => $event, 'id' => 'event-id'])
+            '/', 'POST', ['type' => $event, 'id' => 'event-id'], [], [], []
         );
     }
 }
@@ -42,8 +42,8 @@ class WebhookControllerTestStub extends WebhookController
         // Don't call parent constructor to prevent setting middleware...
     }
 
-    public function handleChargeSucceeded()
+    protected function handleChargeSucceeded(array $data)
     {
-        return new Response('Webhook Handled', 200);
+        return $this->successMethod();
     }
 }

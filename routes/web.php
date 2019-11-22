@@ -1,6 +1,4 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
-Route::get('stripe/pay/{id}', '\Lumen\Cashier\Http\Controllers\PaymentController@pay');
-Route::post('stripe/webhook', 'Lumen\Cashier\Http\Controllers\WebhookController@handleWebhook');
+$this->app->router->get('stripe/pay/{id}', ['as' => 'pay', 'uses' => '\Lumen\Cashier\Http\Controllers\PaymentController@pay']);
+$this->app->router->post('stripe/webhook', ['as' => 'webhook', 'uses' => '\Lumen\Cashier\Http\Controllers\WebhookController@handleWebhook']);

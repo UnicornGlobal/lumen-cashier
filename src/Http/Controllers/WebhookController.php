@@ -30,16 +30,18 @@ class WebhookController extends Controller
     /**
      * Handle a Stripe webhook call.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @param Request $request
+     * @return Response
      */
     public function handleWebhook(Request $request)
     {
-        $payload = json_decode($request->getContent(), true);
-        $method = 'handle'.Str::studly(str_replace('.', '_', $payload['type']));
+        $payload = $request->all();
 
-        if (method_exists($this, $method)) {
-            return $this->{$method}($payload);
+        if (isset($payload['type'])) {
+            $method = 'handle' . Str::studly(str_replace('.', '_', $payload['type']));
+            if (method_exists($this, $method)) {
+                return $this->{$method}($payload);
+            }
         }
 
         return $this->missingMethod();
@@ -48,8 +50,8 @@ class WebhookController extends Controller
     /**
      * Handle customer subscription updated.
      *
-     * @param  array  $payload
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @param array $payload
+     * @return Response
      */
     protected function handleCustomerSubscriptionUpdated(array $payload)
     {
@@ -79,7 +81,7 @@ class WebhookController extends Controller
                 if (isset($data['trial_end'])) {
                     $trial_ends = Carbon::createFromTimestamp($data['trial_end']);
 
-                    if (! $subscription->trial_ends_at || $subscription->trial_ends_at->ne($trial_ends)) {
+                    if (!$subscription->trial_ends_at || $subscription->trial_ends_at->ne($trial_ends)) {
                         $subscription->trial_ends_at = $trial_ends;
                     }
                 }
@@ -110,8 +112,8 @@ class WebhookController extends Controller
     /**
      * Handle a cancelled customer from a Stripe subscription.
      *
-     * @param  array  $payload
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @param array $payload
+     * @return Response
      */
     protected function handleCustomerSubscriptionDeleted(array $payload)
     {
@@ -129,8 +131,8 @@ class WebhookController extends Controller
     /**
      * Handle customer updated.
      *
-     * @param  array  $payload
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @param array $payload
+     * @return Response
      */
     protected function handleCustomerUpdated(array $payload)
     {
@@ -144,8 +146,8 @@ class WebhookController extends Controller
     /**
      * Handle deleted customer.
      *
-     * @param  array  $payload
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @param array $payload
+     * @return Response
      */
     protected function handleCustomerDeleted(array $payload)
     {
@@ -168,8 +170,8 @@ class WebhookController extends Controller
     /**
      * Handle payment action required for invoice.
      *
-     * @param  array  $payload
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @param array $payload
+     * @return Response
      */
     protected function handleInvoicePaymentActionRequired(array $payload)
     {
@@ -194,7 +196,7 @@ class WebhookController extends Controller
     /**
      * Get the billable entity instance by Stripe ID.
      *
-     * @param  string|null  $stripeId
+     * @param string|null $stripeId
      * @return \Lumen\Cashier\Billable|null
      */
     protected function getUserByStripeId($stripeId)
@@ -211,8 +213,8 @@ class WebhookController extends Controller
     /**
      * Handle successful calls on the controller.
      *
-     * @param  array  $parameters
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @param array $parameters
+     * @return Response
      */
     protected function successMethod($parameters = [])
     {
@@ -222,8 +224,8 @@ class WebhookController extends Controller
     /**
      * Handle calls to missing methods on the controller.
      *
-     * @param  array  $parameters
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @param array $parameters
+     * @return Response
      */
     protected function missingMethod($parameters = [])
     {

@@ -31,7 +31,7 @@ abstract class IntegrationTestCase extends TestCase
 
         $this->loadLumenMigrations();
 
-        $this->artisan('migrate')->run();
+        $this->artisan('migrate');
     }
 
     protected static function deleteStripeResource(ApiResource $resource)
