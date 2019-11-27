@@ -25,8 +25,8 @@ class WebhooksTest extends IntegrationTestCase
     {
         parent::setUpBeforeClass();
 
-        static::$productId = static::$stripePrefix.'product-1'.Str::random(10);
-        static::$planId = static::$stripePrefix.'monthly-10-'.Str::random(10);
+        static::$productId = static::$stripePrefix . 'product-1' . Str::random(10);
+        static::$planId = static::$stripePrefix . 'monthly-10-' . Str::random(10);
 
         Product::create([
             'id' => static::$productId,
@@ -61,7 +61,7 @@ class WebhooksTest extends IntegrationTestCase
 
         $this->assertTrue($subscription->cancelled());
 
-        $this->postJson('stripe/webhook', [
+        $this->post(route('cashier.webhook'), [
             'id' => 'foo',
             'type' => 'customer.subscription.updated',
             'data' => [
@@ -83,7 +83,7 @@ class WebhooksTest extends IntegrationTestCase
 
         $this->assertFalse($subscription->cancelled());
 
-        $this->postJson('stripe/webhook', [
+        $this->post(route('cashier.webhook'), [
             'id' => 'foo',
             'type' => 'customer.subscription.deleted',
             'data' => [
@@ -104,7 +104,7 @@ class WebhooksTest extends IntegrationTestCase
 
         $this->assertCount(1, $user->subscriptions);
 
-        $this->postJson('stripe/webhook', [
+        $this->post(route('cashier.webhook'), [
             'id' => 'foo',
             'type' => 'customer.subscription.updated',
             'data' => [
@@ -126,11 +126,11 @@ class WebhooksTest extends IntegrationTestCase
         try {
             $user->newSubscription('main', static::$planId)->create('pm_card_threeDSecure2Required');
 
-            $this->fail('Expected exception '.PaymentActionRequired::class.' was not thrown.');
+            $this->fail('Expected exception ' . PaymentActionRequired::class . ' was not thrown.');
         } catch (PaymentActionRequired $exception) {
             Notification::fake();
 
-            $this->postJson('stripe/webhook', [
+            $this->post(route('cashier.webhook'), [
                 'id' => 'foo',
                 'type' => 'invoice.payment_action_required',
                 'data' => [

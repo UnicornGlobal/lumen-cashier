@@ -4,6 +4,7 @@ namespace Lumen\Cashier;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
+use Lumen\Cashier\Http\Controllers\WebhookController;
 use Stripe\Stripe;
 use Stripe\Util\LoggerInterface;
 
@@ -89,7 +90,7 @@ class CashierServiceProvider extends ServiceProvider
             Route::group([
                 'prefix' => config('cashier.path'),
                 'namespace' => 'Lumen\Cashier\Http\Controllers',
-                'as' => 'cashier.',
+                'as' => 'cashier',
             ], function () {
                 $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
             });
