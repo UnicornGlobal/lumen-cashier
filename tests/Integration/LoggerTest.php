@@ -5,7 +5,6 @@ namespace Lumen\Cashier\Tests\Integration;
 use Lumen\Cashier\Logger;
 use Lumen\Cashier\Tests\TestCase;
 use Stripe\Stripe;
-use Stripe\Util\DefaultLogger;
 use Stripe\Util\LoggerInterface;
 
 class LoggerTest extends TestCase

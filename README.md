@@ -18,12 +18,8 @@ Work in Progress, tests do not pass right now so it's probably broken :)
 - Lumen Testing Tools Compatibility (wip)
 
 ## What's Broken?
-
-- Tests
-- Invoices?
-- Payments?
-- Subscriptions?
-- ?? Lots of other things (probably)
+- Nothing, as far as the tests are concerned. But we can't be sure, 
+feel free to report any issues encountered
 
 ## Tests
 
@@ -38,12 +34,11 @@ that had partial support, so we had to add support for that too.
 
 An upstream PR is open for the testing tool but has not been merged by the
 maintainer yet.
+Tests are all passing for the core functionality(at least for our use case), 
+except for custom logger tests which we've commented out for now. 
 
-As this support in the 3 child packages is not fully complete the tests
-are not all passing. The vital functionality (for our needs at least)
-unit tests pass. The Integration tests hang - it seems it has something
-to do with the way the unicorn/lumen-testbench-core package loads the
-migrations.
+NOTE: The project does not ship with a `phpunit.xml` file. To run tests,
+create one from the provided `phpunit.xml.dist` and add your *test* `STRIPE_SECRET` in it.
 
 ## Disclaimer
 
