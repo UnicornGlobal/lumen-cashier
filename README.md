@@ -2,7 +2,7 @@
 
 A fork of laravel/cashier
 
-Work in Progress, tests do not pass right now so it's probably broken :)
+Work in Progress, but all tests are passing so assume everything is fine
 
 ## Install
 
